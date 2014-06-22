@@ -1,7 +1,12 @@
-## Put comments here that give an overall description of what your
-## functions do
+## This pair of functions will cache the inverse of a matrix, assuming it is
+## invertible, to avoid time-consuming computations. These functions will take
+## advantage of the R language scoping rules to preserve state in an R object.
 
-## Write a short comment describing this function
+## This function will create a list containing a function to:
+## 1. set the values within the matrix
+## 2. get the matrix back
+## 3. set the values within the inverted matrix
+## 4. get the inverted matrix
 
 makeCacheMatrix <- function(x = matrix()) {
 	m <- NULL
@@ -18,7 +23,10 @@ makeCacheMatrix <- function(x = matrix()) {
 }
 
 
-## Write a short comment describing this function
+## The following function will calculated the inverted matrix from the list
+## created by the function above. But before it does that, it will check to
+## see if the inverted matrix has already been calculated. If not, it will
+## invert the matrix and caches it.
 
 cacheSolve <- function(x, ...) {
         ## Return a matrix that is the inverse of 'x'
