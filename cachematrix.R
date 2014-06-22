@@ -10,13 +10,18 @@
 
 makeCacheMatrix <- function(x = matrix()) {
 	m <- NULL
+  ## Set the matrix object
 	set <- function(y) {
 		x <<- y
 		m <<- NULL
 	}
+  ## Get the matrix object
 	get <- function() x
+  ## Set the inverted matrix object
 	setsolve <- function (solve) m <<- solve
+  ## Get the inverted matrix object
 	getsolve <- function () m
+  ## Creates a special list that will be returned
 	list(set=set, get=get,
 		setsolve=setsolve,
 		getsolve=getsolve)
@@ -31,10 +36,15 @@ makeCacheMatrix <- function(x = matrix()) {
 cacheSolve <- function(x, ...) {
         ## Return a matrix that is the inverse of 'x'
 	m <- x$getsolve()
+  ## Checks if the inverted matrix object has already been
+  ## created. If not, create it.
 	if(!is.null(m)) {
+    ## The inverted matrix object has already been cached
 		message("getting cached data")
 		return(m)
 	}
+  ## The inverted matrix object does not exist. So,
+  ## create it
 	data <- x$get()
 	m <- solve(data, ...)
 	x$setsolve(m)
